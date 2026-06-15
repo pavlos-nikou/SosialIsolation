@@ -1,0 +1,67 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <title>TalkPoint one-stroke thread logo</title>
+  <desc>Single continuous-line logo inspired by two people hugging, designed to animate as one pencil stroke from left to right.</desc>
+
+  <path
+    id="talkpoint-thread"
+    d="
+      M 115 515
+      C 165 488, 218 482, 272 496
+      C 332 511, 383 523, 432 501
+
+      C 377 482, 327 445, 304 395
+      C 276 333, 294 263, 344 230
+      C 395 197, 466 219, 489 280
+      C 514 348, 474 421, 410 444
+
+      C 477 464, 540 453, 590 415
+      C 628 386, 653 351, 668 316
+
+      C 631 299, 604 260, 610 216
+      C 618 160, 669 122, 725 132
+      C 784 143, 820 198, 804 254
+      C 792 296, 760 325, 724 338
+
+      C 776 349, 823 377, 852 421
+      C 888 475, 882 542, 840 582
+      C 790 630, 711 619, 658 567
+      C 611 521, 588 462, 590 415
+
+      C 557 468, 508 513, 444 536
+      C 371 562, 295 549, 235 525
+
+      C 325 593, 447 631, 574 625
+      C 694 620, 797 577, 858 512
+
+      C 911 456, 930 388, 916 327
+      C 903 267, 859 218, 803 196
+
+      C 865 194, 922 218, 958 264
+      C 1004 323, 1002 404, 957 467
+      C 909 535, 818 574, 716 572
+      C 605 570, 499 517, 432 501
+
+      C 515 550, 631 590, 747 599
+      C 864 608, 980 583, 1085 528
+    "
+    stroke="#2F6F68"
+    stroke-width="28"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    pathLength="1"
+  />
+
+  <style>
+    #talkpoint-thread {
+      stroke-dasharray: 1;
+      stroke-dashoffset: 1;
+      animation: drawTalkPoint 3s ease-in-out forwards;
+    }
+
+    @keyframes drawTalkPoint {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+  </style>
+</svg>

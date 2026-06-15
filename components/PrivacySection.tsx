@@ -1,79 +1,93 @@
-import { Lock, EyeOff, UserX, FileX } from "lucide-react";
-
 const promises = [
   {
-    icon: UserX,
     title: "No account required",
-    desc: "You can complete the entire intake without creating an account or giving your name.",
+    desc: "Complete the process without creating an account or sharing your name.",
   },
   {
-    icon: EyeOff,
     title: "Anonymous by default",
-    desc: "We never track who you are. Your answers are processed privately and not linked to your identity.",
+    desc: "Your answers are not linked to your identity unless you choose to request contact.",
   },
   {
-    icon: Lock,
     title: "Your data, your choice",
-    desc: "Personal details are only collected if you actively choose to request contact from a support organization.",
+    desc: "Personal details are collected only when you actively choose to share them.",
   },
   {
-    icon: FileX,
     title: "Minimum necessary data",
-    desc: "We collect only what is needed to find the right support path — nothing more, nothing ever sold.",
+    desc: "We only ask for what is needed to guide you toward the right support path.",
   },
 ];
 
 export default function PrivacySection() {
   return (
-    <section
-      id="privacy"
-      className="px-5 py-20 lg:py-28"
-      style={{ background: "#FAFAF7" }}
-    >
+    <section id="privacy" className="bg-warm-bg px-6 py-24 lg:px-16">
       <div className="mx-auto max-w-6xl">
-        <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-          <div>
-            <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-[#2F6FED]">
-              Privacy first
-            </p>
-            <h2 className="mb-5 text-3xl font-bold tracking-tight text-[#1D1D1F] lg:text-4xl">
-              You are in control
-              <br />
-              of what you share.
-            </h2>
-            <p className="mb-6 text-base leading-relaxed text-[#667085]">
-              SupportLink is designed around your privacy from the ground up.
-              The platform asks only what is needed, explains why, and never
-              uses your information without your explicit consent.
-            </p>
-            <div className="inline-block rounded-xl border border-[#2F6FED]/20 bg-[#EAF1FF] px-5 py-3 text-sm font-medium text-[#2F6FED]">
-              GDPR-compliant · Privacy by design
-            </div>
-          </div>
+        {/* Top line */}
+        <div className="mb-10 flex items-center justify-between border-t border-border pt-6">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-teal">
+            Privacy first
+          </p>
 
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {promises.map((p, i) => {
-              const Icon = p.icon;
-              return (
-                <div
-                  key={i}
-                  className="rounded-2xl border border-slate-100 bg-white p-6"
-                >
-                  <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-[#EAF1FF]">
-                    <Icon size={18} className="text-[#2F6FED]" />
-                  </div>
-                  <h3 className="mb-1.5 text-sm font-bold text-[#1D1D1F]">
-                    {p.title}
-                  </h3>
-                  <p className="text-xs leading-relaxed text-[#667085]">
-                    {p.desc}
-                  </p>
-                </div>
-              );
-            })}
+          <p className="hidden text-xs text-muted sm:block">
+            Anonymous · Consent-based · Minimal data
+          </p>
+        </div>
+
+        {/* Main statement */}
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
+          <h2 className="max-w-4xl text-[clamp(2.4rem,5.5vw,5.8rem)] font-bold leading-[0.96] tracking-tight text-text">
+            Your answers
+            <br />
+            stay yours.
+          </h2>
+
+          <p className="max-w-md text-base leading-relaxed text-muted lg:pb-3">
+            We ask only what is needed, explain why it matters, and never use
+            personal information without your clear consent.
+          </p>
+        </div>
+
+        {/* Quiet quote */}
+        <div className="mt-16 border-y border-border py-8">
+          <p className="max-w-3xl text-[clamp(1.4rem,3vw,2.4rem)] font-medium leading-[1.25] tracking-tight text-text">
+            “You can share how you feel without having to explain who you are.”
+          </p>
+        </div>
+
+        {/* Promise rows */}
+        <div className="mt-4">
+          {promises.map((p, i) => (
+            <div
+              key={p.title}
+              className="grid grid-cols-1 gap-4 border-b border-border py-7 transition hover:bg-surface/40 sm:grid-cols-[80px_0.8fr_1.2fr] sm:items-start"
+            >
+              <span className="text-xs font-bold text-teal opacity-50">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+
+              <h3 className="text-base font-bold tracking-tight text-text">
+                {p.title}
+              </h3>
+
+              <p className="max-w-xl text-sm leading-relaxed text-muted">
+                {p.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom note */}
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <p className="max-w-xl text-xs leading-relaxed text-sage">
+            Built with privacy by design principles, data minimization, and
+            consent-based contact flows.
+          </p>
+
+          <div className="w-fit rounded-full border border-border px-4 py-2 text-xs font-medium text-muted">
+            No tracking by default
           </div>
         </div>
       </div>
     </section>
   );
 }
+

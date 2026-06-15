@@ -1,37 +1,46 @@
 import Link from "next/link";
-import { HeartHandshake } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-slate-100 bg-white px-5 py-10">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 sm:flex-row">
-        <Link href="/" className="flex items-center gap-2.5">
-          <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-emerald-400 text-white">
-            <HeartHandshake size={16} />
-          </div>
-          <span className="text-base font-bold text-slate-900">
-            Support<span className="text-[#2F6FED]">Link</span>
-          </span>
-        </Link>
+    <footer className="border-t border-border bg-warm-bg px-6 py-10 lg:px-16">
+      <div className="mx-auto max-w-5xl flex flex-col gap-8 sm:flex-row sm:items-center sm:justify-between">
 
-        <nav className="flex flex-wrap items-center justify-center gap-6 text-sm text-[#667085]">
-          <Link href="#how-it-works" className="hover:text-[#1D1D1F]">
-            How it works
-          </Link>
-          <Link href="#privacy" className="hover:text-[#1D1D1F]">
-            Privacy
-          </Link>
-          <Link href="#for-ngos" className="hover:text-[#1D1D1F]">
-            For NGOs
-          </Link>
-          <Link href="/about" className="hover:text-[#1D1D1F]">
-            About
-          </Link>
+        {/* Logo + tagline */}
+        <div>
+          <div className="flex items-center gap-3 mb-2">
+            {/* ΒΑΛΕ ΕΔΩ ΤΟ LOGO ΣΟΥ */}
+            <span className="text-base font-semibold tracking-tight text-text">
+              Talk<span className="text-teal">Point</span>
+            </span>
+          </div>
+          <p className="text-xs text-sage">
+            Safe first. Data second. Human always.
+          </p>
+        </div>
+
+        {/* Nav */}
+        <nav className="flex flex-wrap gap-x-8 gap-y-2">
+          {[
+            { label: "How it works", href: "#how-it-works" },
+            { label: "Privacy", href: "#privacy" },
+            { label: "For NGOs", href: "#for-ngos" },
+            { label: "About", href: "/about" },
+          ].map((l) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              className="text-sm text-muted transition hover:text-text"
+            >
+              {l.label}
+            </Link>
+          ))}
         </nav>
 
-        <p className="text-xs text-[#667085]">
-          &copy; {new Date().getFullYear()} SupportLink &middot; Cyprus
+        {/* Legal */}
+        <p className="text-xs text-sage whitespace-nowrap">
+          &copy; {new Date().getFullYear()} TalkPoint · Cyprus
         </p>
+
       </div>
     </footer>
   );

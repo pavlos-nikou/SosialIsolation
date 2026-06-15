@@ -3,28 +3,45 @@ import { ArrowRight } from "lucide-react";
 
 export default function CTASection() {
   return (
-    <section className="px-5 py-20 lg:py-28" style={{ background: "#FAFAF7" }}>
-      <div className="mx-auto max-w-2xl text-center">
-        <div
-          className="rounded-3xl px-10 py-14"
-          style={{
-            background: "linear-gradient(135deg, #2F6FED 0%, #2BB3A3 100%)",
-          }}
-        >
-          <h2 className="mb-4 text-3xl font-bold tracking-tight text-white lg:text-4xl">
-            You don&apos;t have to figure it out alone.
-          </h2>
-          <p className="mx-auto mb-8 max-w-md text-base leading-relaxed text-white/80">
-            SupportLink takes less than 10 minutes. You stay anonymous unless
-            you choose otherwise. No commitment, no pressure.
-          </p>
-          <Link
-            href="/check-in"
-            className="inline-flex items-center gap-2.5 rounded-xl bg-white px-8 py-3.5 text-base font-semibold text-[#2F6FED] shadow-md transition hover:bg-slate-50"
-          >
-            Start your check-in — it&apos;s free
-            <ArrowRight size={18} />
-          </Link>
+    <section className="bg-text px-6 py-24 lg:px-16 lg:py-32">
+      <div className="mx-auto max-w-5xl">
+
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
+
+          {/* Left — headline */}
+          <div>
+            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-sage">
+              You are not alone
+            </p>
+            <h2 className="text-[clamp(2.2rem,5vw,4rem)] font-bold leading-[1.08] tracking-tight text-warm-bg">
+              Whatever you
+              <br />are going through,
+              <br />
+              <span className="text-clay">support is here.</span>
+            </h2>
+          </div>
+
+          {/* Right — copy + CTA */}
+          <div>
+            <p className="mb-8 text-base leading-relaxed" style={{ color: "#6E756F" }}>
+              TalkPoint takes less than 10 minutes. You stay anonymous
+              unless you choose otherwise. No commitment, no pressure.
+              You can stop at any time.
+            </p>
+
+            <Link
+              href="/check-in"
+              className="inline-flex items-center gap-3 rounded-2xl bg-teal px-7 py-4 text-base font-semibold text-white transition hover:opacity-90"
+            >
+              Start safely
+              <ArrowRight size={18} />
+            </Link>
+
+            <p className="mt-4 text-xs" style={{ color: "#4A5249" }}>
+              Anonymous · No account needed · No judgment
+            </p>
+          </div>
+
         </div>
       </div>
     </section>

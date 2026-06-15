@@ -1,8 +1,11 @@
+// components/HeroSection.tsx
+
 "use client";
 
-import { ArrowRight, Shield } from "lucide-react";
-import { useEffect, useState, useRef } from "react";
+import { ArrowRight } from "lucide-react";
+import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
+import AnimatedLogo from "@/components/AnimatedLogo"
 
 export default function HeroSection() {
   const [text, setText] = useState("");
@@ -11,8 +14,10 @@ export default function HeroSection() {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   function handleSubmit() {
-    if (!text.trim()) return;
-    router.push(`/check-in?q=${encodeURIComponent(text.trim())}`);
+    const cleanText = text.trim();
+    if (!cleanText) return;
+
+    router.push(`/check-in?q=${encodeURIComponent(cleanText)}`);
   }
 
   function handleKeyDown(e: React.KeyboardEvent<HTMLTextAreaElement>) {
@@ -23,99 +28,150 @@ export default function HeroSection() {
   }
 
   return (
-    <section className="relative min-h-[88vh] overflow-hidden px-5 pb-24 pt-28 lg:pt-36 flex items-start justify-center">
-      {/* Animated background */}
+    <section className="relative flex min-h-[90vh] items-center overflow-hidden bg-warm-bg px-6 pb-16 pt-16 lg:px-16 lg:pt-24">
+      <style>{`
+        @keyframes hero-breathe {
+          0%, 100% { opacity: 0.4; transform: scale(1); }
+          50% { opacity: 0.7; transform: scale(1.05); }
+        }
+
+        @keyframes hero-fade-in {
+          from { opacity: 0; transform: translateY(8px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-blob {
+          position: absolute;
+          border-radius: 50%;
+          filter: blur(80px);
+          animation: hero-breathe 8s ease-in-out infinite;
+        }
+
+        .hero-text {
+          animation: hero-fade-in 0.8s ease-out both;
+        }
+
+        .hero-text-delay {
+          animation: hero-fade-in 0.8s ease-out 0.2s both;
+        }
+
+        .hero-text-delay-2 {
+          animation: hero-fade-in 0.8s ease-out 0.4s both;
+        }
+      `}</style>
+
       <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
         <div
-          className="absolute -top-40 left-1/2 h-[700px] w-[700px] -translate-x-1/2 rounded-full opacity-30"
+          className="hero-blob"
           style={{
-            background: "radial-gradient(circle, #2F6FED 0%, transparent 70%)",
-            filter: "blur(80px)",
+            width: 500,
+            height: 500,
+            top: "-10%",
+            left: "-10%",
+            background: "#DCA77A",
+            opacity: 0.15,
           }}
         />
+
         <div
-          className="absolute top-20 right-0 h-[400px] w-[400px] rounded-full opacity-20"
+          className="hero-blob"
           style={{
-            background: "radial-gradient(circle, #2BB3A3 0%, transparent 70%)",
-            filter: "blur(60px)",
+            width: 400,
+            height: 400,
+            bottom: "-5%",
+            right: "20%",
+            background: "#2F6F68",
+            opacity: 0.08,
+            animationDelay: "3s",
           }}
         />
       </div>
 
-      <div className="relative mx-auto w-full max-w-2xl text-center">
-        {/* Eyebrow */}
-        <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-[#2F6FED]/20 bg-white/80 px-4 py-1.5 text-xs font-medium text-[#2F6FED] backdrop-blur-sm shadow-sm">
-          <Shield size={12} />
-          Anonymous · No account · No judgment
-        </div>
+      <div className="relative mx-auto grid w-full max-w-6xl grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
+        <div>
+          <p className="hero-text mb-6 text-sm font-medium tracking-wide text-muted">
+            Hey. Whatever brought you here, we&apos;re glad you came.
+          </p>
 
-        {/* Headline */}
-        <h1 className="mb-4 text-5xl font-bold leading-[1.08] tracking-tight text-[#1D1D1F] lg:text-7xl">
-          You don&apos;t have
-          <br />
-          <span
-            style={{
-              background: "linear-gradient(135deg, #2F6FED 0%, #2BB3A3 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-            }}
-          >
-            to figure it out alone.
-          </span>
-        </h1>
+          <h1 className="hero-text-delay mb-8 text-[clamp(2.8rem,6vw,5.5rem)] font-bold leading-[1.02] tracking-tight text-text">
+            You are
+            <br />
+            <em className="not-italic text-teal">not alone.</em>
+          </h1>
 
-        <p className="mx-auto mb-10 max-w-md text-base leading-relaxed text-[#667085]">
-          Tell us how you&apos;ve been feeling. We&apos;ll help you find the right support — privately, at your own pace.
-        </p>
+          <div className="hero-text-delay-2 max-w-lg">
+            <p className="mb-3 text-sm text-muted">
+              Tell us a little about how you&apos;ve been feeling lately.
+            </p>
 
-        {/* Main textarea card */}
-        <div
-          className="relative mx-auto rounded-3xl bg-white p-1.5 transition-all duration-300"
-          style={{
-            boxShadow: focused
-              ? "0 0 0 3px rgba(47,111,237,0.15), 0 20px 60px rgba(47,111,237,0.12), 0 4px 20px rgba(0,0,0,0.06)"
-              : "0 4px 24px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04)",
-          }}
-        >
-          <div className="rounded-[18px] bg-[#FAFAF7] overflow-hidden">
-            <textarea
-              ref={textareaRef}
-              value={text}
-              onChange={(e) => setText(e.target.value)}
-              onKeyDown={handleKeyDown}
-              onFocus={() => setFocused(true)}
-              onBlur={() => setFocused(false)}
-              placeholder="I've been feeling disconnected lately and I'm not sure where to turn..."
-              rows={4}
-              className="w-full resize-none bg-transparent px-6 pt-5 pb-4 text-[15px] leading-relaxed text-[#1D1D1F] placeholder:text-[#aab0bc] focus:outline-none"
-            />
-            <div className="flex items-center justify-between border-t border-slate-100 px-5 py-3">
-              <p className="text-xs text-[#aab0bc]">
-                Shift+Enter for new line
-              </p>
-              <button
-                onClick={handleSubmit}
-                disabled={!text.trim()}
-                className="flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold transition-all duration-200 disabled:opacity-30"
-                style={{
-                  background: text.trim()
-                    ? "linear-gradient(135deg, #2F6FED 0%, #2BB3A3 100%)"
-                    : "#e5e7eb",
-                  color: text.trim() ? "#fff" : "#9ca3af",
-                }}
-              >
-                Continue
-                <ArrowRight size={14} />
-              </button>
+            <div
+              className="rounded-2xl bg-surface transition-all duration-500"
+              style={{
+                boxShadow: focused
+                  ? "0 0 0 2px #2F6F68, 0 8px 32px rgba(47,111,104,0.12)"
+                  : "0 2px 16px rgba(46,51,48,0.08)",
+              }}
+            >
+              <textarea
+                ref={textareaRef}
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+                onKeyDown={handleKeyDown}
+                onFocus={() => setFocused(true)}
+                onBlur={() => setFocused(false)}
+                placeholder="I've been feeling really overwhelmed lately..."
+                rows={4}
+                className="w-full resize-none rounded-t-2xl bg-transparent px-6 pb-4 pt-5 text-[15px] leading-relaxed text-text placeholder:text-sage focus:outline-none"
+              />
+
+              <div className="flex items-center justify-between rounded-b-2xl border-t border-border bg-warm-bg px-5 py-3">
+                <p className="text-xs text-sage">
+                  Anonymous · No account needed
+                </p>
+
+                <button
+                  onClick={handleSubmit}
+                  disabled={!text.trim()}
+                  className="flex items-center gap-2 rounded-xl bg-teal px-4 py-2 text-sm font-semibold text-white transition hover:opacity-90 disabled:opacity-30"
+                >
+                  Share how I feel
+                  <ArrowRight size={13} />
+                </button>
+              </div>
             </div>
+
+            <p className="mt-3 text-xs text-sage">
+              Your words are never stored without your explicit consent.
+            </p>
+          </div>
+
+          <div className="mt-10 flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-6">
+            {[
+              { n: "01", label: "Share how you feel" },
+              { n: "02", label: "Get matched" },
+              { n: "03", label: "Connect when ready" },
+            ].map((s, i) => (
+              <div key={s.n} className="flex items-center gap-2">
+                <span className="text-xs font-bold text-teal opacity-60">
+                  {s.n}
+                </span>
+
+                <span className="text-xs text-muted">{s.label}</span>
+
+                {i < 2 && (
+                  <span className="mx-1 hidden text-border sm:block">·</span>
+                )}
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Trust line */}
-        <p className="mt-5 text-xs text-[#aab0bc]">
-          Your words are never stored without your explicit consent.
-        </p>
+        <div className="hidden items-center justify-center lg:flex">
+          <AnimatedLogo/>
+        </div>
       </div>
     </section>
   );
 }
+
+

@@ -1,74 +1,101 @@
-import { MessageSquare, Compass, HeartHandshake } from "lucide-react";
+import { ArrowDownRight } from "lucide-react";
 
 const steps = [
   {
-    icon: MessageSquare,
-    color: "#2F6FED",
-    bg: "#EAF1FF",
+    n: "01",
     title: "Share how you feel",
     desc: "Answer a few calm, private questions. No account, no name, no judgment. Just an honest look at what you might need.",
   },
   {
-    icon: Compass,
-    color: "#2BB3A3",
-    bg: "#E6FAF8",
+    n: "02",
     title: "Get matched to support",
-    desc: "SupportLink reviews your answers and suggests the support options most relevant to your situation — clearly explained.",
+    desc: "We review your answers and suggest the support options most relevant to your situation, clearly explained and without jargon.",
   },
   {
-    icon: HeartHandshake,
-    color: "#2F6FED",
-    bg: "#EAF1FF",
+    n: "03",
     title: "Connect when you're ready",
-    desc: "Reach out to an organization directly, or choose to share your details only when you feel comfortable. Always your choice.",
+    desc: "Reach out to an organization directly, or share your details only when you feel comfortable. Always your choice.",
   },
 ];
 
 export default function HowItWorks() {
   return (
-    <section
-      id="how-it-works"
-      className="border-t border-slate-100 bg-white px-5 py-20 lg:py-28"
-    >
+    <section id="how-it-works" className="bg-warm-bg px-6 py-24 lg:px-16">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-14 text-center">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-[#2BB3A3]">
-            How it works
-          </p>
-          <h2 className="text-3xl font-bold tracking-tight text-[#1D1D1F] lg:text-4xl">
-            From uncertainty to a clear next step
-          </h2>
-          <p className="mx-auto mt-4 max-w-lg text-base text-[#667085]">
-            The whole process takes under 10 minutes. No commitment required.
-          </p>
-        </div>
+        <div className="grid grid-cols-1 gap-16 lg:grid-cols-[0.85fr_1.15fr]">
+          {/* Sticky intro */}
+          <div className="lg:sticky lg:top-24 lg:h-fit">
+            <p className="mb-8 text-xs font-semibold uppercase tracking-[0.22em] text-teal">
+              How it works
+            </p>
 
-        <div className="grid gap-6 lg:grid-cols-3">
-          {steps.map((step, i) => {
-            const Icon = step.icon;
-            return (
-              <div
-                key={i}
-                className="rounded-2xl border border-slate-100 bg-[#FAFAF7] p-8 transition hover:border-slate-200 hover:shadow-sm"
-              >
-                <div
-                  className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl"
-                  style={{ background: step.bg }}
+            <h2 className="max-w-xl text-[clamp(2.6rem,5vw,5.6rem)] font-bold leading-[0.96] tracking-tight text-text">
+              A calm path
+              <br />
+              from feeling
+              <br />
+              to support.
+            </h2>
+
+            <p className="mt-8 max-w-sm text-base leading-relaxed text-muted">
+              No pressure. No rushed decisions. Just a simple flow that helps
+              you understand what you need and what support is available.
+            </p>
+
+            <div className="mt-10 flex h-12 w-12 items-center justify-center rounded-full border border-border text-teal">
+              <ArrowDownRight size={18} />
+            </div>
+          </div>
+
+          {/* Steps */}
+          <div className="relative">
+            {/* Vertical thread */}
+            <div
+              aria-hidden
+              className="absolute left-[18px] top-3 hidden h-[calc(100%-24px)] w-px bg-border sm:block"
+            />
+
+            <div className="space-y-4">
+              {steps.map((step, i) => (
+                <article
+                  key={step.n}
+                  className="relative grid grid-cols-1 gap-6 border-t border-border py-12 sm:grid-cols-[64px_1fr]"
                 >
-                  <Icon size={22} style={{ color: step.color }} />
-                </div>
-                <span className="mb-2 block text-xs font-bold uppercase tracking-widest text-[#667085]">
-                  Step {i + 1}
-                </span>
-                <h3 className="mb-3 text-lg font-bold text-[#1D1D1F]">
-                  {step.title}
-                </h3>
-                <p className="text-sm leading-relaxed text-[#667085]">
-                  {step.desc}
+                  <div className="relative z-10 flex items-start">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-warm-bg text-xs font-bold text-teal">
+                      {step.n}
+                    </span>
+                  </div>
+
+                  <div className="max-w-2xl">
+                    <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-sage">
+                      Step {i + 1}
+                    </p>
+
+                    <h3 className="text-[clamp(1.8rem,3vw,3rem)] font-bold leading-[1.05] tracking-tight text-text">
+                      {step.title}
+                    </h3>
+
+                    <p className="mt-5 max-w-xl text-base leading-relaxed text-muted">
+                      {step.desc}
+                    </p>
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            {/* Closing privacy note */}
+            <div className="mt-8 border-y border-border py-8">
+              <div className="grid grid-cols-1 gap-5 sm:grid-cols-[160px_1fr] sm:items-start">
+                <p className="text-sm font-bold text-text">Safe first.</p>
+
+                <p className="max-w-2xl text-sm leading-relaxed text-muted">
+                  Your answers are private and used only to guide your support.
+                  They are never sold, and never shared without your consent.
                 </p>
               </div>
-            );
-          })}
+            </div>
+          </div>
         </div>
       </div>
     </section>
