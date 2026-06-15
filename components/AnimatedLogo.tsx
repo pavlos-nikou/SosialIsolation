@@ -59,8 +59,7 @@ export default function AnimatedLogo() {
         aria-hidden
         className="absolute inset-0 rounded-full blur-3xl"
         style={{
-          background: "radial-gradient(circle, #2F6F6818 0%, transparent 72%)",
-          transform: "scale(1.22)",
+          background: "radial-gradient(circle, #2F6F6818 0%, transparent 72%)",transform: "scale(1.22)",
         }}
       />
 
