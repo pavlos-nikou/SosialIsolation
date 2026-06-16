@@ -87,7 +87,7 @@ export default function HeroSection() {
         />
       </div>
 
-      <div className="relative mx-auto grid w-full max-w-6xl grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
+      <div className="relative mx-auto grid w-full max-w-6xl grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center lg:gap-16" >
         <div>
           <p className="hero-text mb-6 text-sm font-medium tracking-wide text-muted">
             Hey. Whatever brought you here, we&apos;re glad you came.

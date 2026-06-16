@@ -8,6 +8,29 @@ const LOGO_PATHS = [
   `M6153 3223 c72 -50 128 -90 177 -130 68 -55 177 -128 237 -160 40 -21 73 -41 73 -44 0 -15 -163 -126 -235 -160 -120 -56 -183 -70 -340 -76 -118 -4 -155 -2 -237 16 -53 11 -118 28 -145 37 -88 29 -250 113 -322 167 -94 70 -213 186 -205 198 3 6 11 6 17 1 7 -5 44 -15 84 -22 49 -9 111 -11 195 -7 136 7 199 20 303 62 81 33 221 115 256 149 13 13 32 24 42 25 10 1 55 -24 100 -56z`,
 ];
 
+const encouragementMessages = [
+  {
+    text: "You are not alone",
+    position: "top-10 left-0",
+    delay: "0.5s",
+  },
+  {
+    text: "Your voice matters",
+    position: "top-28 right-4",
+    delay: "1.2s",
+  },
+  {
+    text: "Take your time",
+    position: "bottom-32 left-8",
+    delay: "2s",
+  },
+  {
+    text: "Support is here",
+    position: "bottom-12 right-12",
+    delay: "2.8s",
+  },
+];
+
 export default function AnimatedLogo() {
   const duration = 1.5;
   const gap = 0.2;
@@ -25,6 +48,26 @@ export default function AnimatedLogo() {
           to { stroke-dashoffset: 0; }
         }
 
+        @keyframes encouragement-in {
+          0% {
+            opacity: 0;
+            transform: translateY(12px) scale(0.95);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+
+        @keyframes encouragement-float {
+          0%, 100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+        }
+
         .logo-float {
           animation: logo-float 6s ease-in-out infinite;
         }
@@ -36,6 +79,15 @@ export default function AnimatedLogo() {
           animation-duration: 1.5s;
           animation-timing-function: ease;
           animation-fill-mode: forwards;
+        }
+
+        .encouragement {
+          opacity: 0;
+          animation-name: encouragement-in, encouragement-float;
+          animation-duration: 1s, 5s;
+          animation-timing-function: ease, ease-in-out;
+          animation-fill-mode: forwards, none;
+          animation-iteration-count: 1, infinite;
         }
       `}</style>
 
@@ -115,6 +167,34 @@ export default function AnimatedLogo() {
           </g>
         </svg>
       </div>
+
+      {encouragementMessages.map((item) => (
+        <div
+          key={item.text}
+          className={`
+            pointer-events-none
+            absolute
+            ${item.position}
+            encouragement
+            rounded-2xl
+            border
+            border-border
+            bg-surface/90
+            px-5
+            py-3
+            text-sm
+            font-medium
+            text-muted
+            shadow-sm
+            backdrop-blur-md
+          `}
+          style={{
+            animationDelay: item.delay,
+          }}
+        >
+          {item.text}
+        </div>
+      ))}
     </div>
   );
 }

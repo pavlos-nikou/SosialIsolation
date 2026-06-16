@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "SupportLink — Find the right support, safely",
+  title: "TalkPoint — Find the right support, safely",
   description:
-    "SupportLink helps young adults understand their support options and connect with the right services — anonymously and at their own pace.",
+    "Talkpoint helps young adults understand their support options and connect with the right services — anonymously and at their own pace.",
 };
 
 export default function RootLayout({

@@ -85,6 +85,7 @@ export default function Navbar() {
             src="/Logo.svg"
             alt="TalkPoint Logo"
             width={90}
+            style={{scale: 1.5}}
           />
 
 
@@ -95,6 +96,7 @@ export default function Navbar() {
             tracking-tight
             text-text
             "
+            style={{scale: 1.5}}
           >
             Talk
             <span className="text-teal">

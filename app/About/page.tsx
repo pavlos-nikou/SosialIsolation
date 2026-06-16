@@ -10,7 +10,7 @@ import Footer from "@/components/Footer";
 
 export default function AboutPage() {
   return (
-    <>
+    <main className="bg-warm-bg">
       <Navbar />
       <AboutHero />
       <AboutMission/>
@@ -20,6 +20,6 @@ export default function AboutPage() {
       <AboutPrivacy/>
       <AboutThread/>
       <Footer/>
-    </>
+    </main>
   );
 }
