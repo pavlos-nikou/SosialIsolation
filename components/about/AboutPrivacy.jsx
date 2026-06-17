@@ -1,51 +1,410 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { ShieldCheck, Lock, Check } from "lucide-react";
+
+
 export default function AboutPrivacy() {
+
   const points = [
     "You can stop at any time.",
     "Your private conversation is not treated as a public record.",
     "Support requests require clear consent.",
   ];
 
-  return (
-    <section className="bg-surface px-6 py-24">
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-14 items-center">
 
-        <div>
-          <span className="text-teal text-sm font-medium">
+
+  return (
+
+    <section
+      className="
+      relative
+      overflow-hidden
+
+      bg-surface
+
+      px-6
+      py-20
+      "
+    >
+
+
+      {/* background */}
+      <motion.div
+        animate={{
+          y:[0,-20,0],
+        }}
+
+        transition={{
+          duration:8,
+          repeat:Infinity,
+        }}
+
+        className="
+        absolute
+        -right-20
+        top-20
+
+        h-72
+        w-72
+
+        rounded-full
+
+        bg-care
+
+        blur-[120px]
+        "
+      />
+
+
+
+      <div
+        className="
+        relative
+
+        mx-auto
+
+        grid
+
+        max-w-6xl
+
+        gap-12
+
+        md:grid-cols-2
+        md:items-center
+        "
+      >
+
+
+
+        {/* LEFT */}
+        <motion.div
+
+          initial={{
+            opacity:0,
+            x:-40,
+          }}
+
+          whileInView={{
+            opacity:1,
+            x:0,
+          }}
+
+          viewport={{
+            once:true,
+            amount:0.4,
+          }}
+
+          transition={{
+            duration:0.7,
+          }}
+        >
+
+
+          <span
+            className="
+            inline-flex
+            items-center
+            gap-2
+
+            rounded-full
+
+            bg-care
+
+            px-5
+            py-2
+
+            text-sm
+            font-medium
+
+            text-teal
+            "
+          >
+
+            <ShieldCheck size={16}/>
+
             Privacy & trust
+
           </span>
 
-          <h2 className="mt-4 text-4xl md:text-5xl font-semibold text-text leading-tight">
+
+
+          <h2
+            className="
+            mt-5
+
+            text-4xl
+            md:text-5xl
+
+            font-semibold
+
+            leading-tight
+            tracking-tight
+
+            text-text
+            "
+          >
+
             Built to feel safe before it collects anything.
+
           </h2>
 
-          <p className="mt-6 text-lg text-muted leading-relaxed">
+
+
+
+          <p
+            className="
+            mt-5
+
+            max-w-xl
+
+            text-base
+
+            leading-relaxed
+
+            text-muted
+            "
+          >
+
             TalkPoint is designed to avoid unnecessary data collection.
             Users stay informed and in control of what is shared.
+
           </p>
-        </div>
 
-        <div className="bg-warm-bg border border-border rounded-[2rem] p-8">
-          <h3 className="text-2xl font-semibold text-text">
-            What users should know
-          </h3>
 
-          <div className="mt-8 space-y-4">
-            {points.map((point, index) => (
-              <div
-                key={index}
-                className="flex gap-4 items-start bg-surface rounded-2xl p-5 border border-border"
+
+        </motion.div>
+
+
+
+
+
+
+
+        {/* RIGHT CARD */}
+        <motion.div
+
+          initial={{
+            opacity:0,
+            x:40,
+          }}
+
+          whileInView={{
+            opacity:1,
+            x:0,
+          }}
+
+          viewport={{
+            once:true,
+            amount:0.4,
+          }}
+
+          transition={{
+            duration:0.7,
+            delay:0.15,
+          }}
+
+
+          className="
+          rounded-[2rem]
+
+          border
+          border-border
+
+          bg-warm-bg/80
+
+          p-7
+
+          shadow-sm
+
+          backdrop-blur-md
+          "
+        >
+
+
+
+          <div
+            className="
+            flex
+            items-center
+            gap-4
+            "
+          >
+
+
+            <div
+              className="
+              flex
+
+              h-14
+              w-14
+
+              items-center
+              justify-center
+
+              rounded-2xl
+
+              bg-teal
+
+              text-white
+              "
+            >
+
+              <Lock size={24}/>
+
+            </div>
+
+
+
+
+            <div>
+
+              <h3
+                className="
+                text-2xl
+                font-semibold
+
+                text-text
+                "
               >
-                <span className="text-teal font-semibold">✓</span>
 
-                <p className="text-muted leading-relaxed">
-                  {point}
-                </p>
-              </div>
-            ))}
+                What users should know
+
+              </h3>
+
+
+              <p className="text-sm text-muted">
+                Transparency comes first
+              </p>
+
+            </div>
+
+
+
           </div>
-        </div>
+
+
+
+
+
+
+
+
+          <div
+            className="
+            mt-8
+
+            space-y-3
+            "
+          >
+
+            {points.map((point,index)=>(
+
+              <motion.div
+
+                key={point}
+
+                initial={{
+                  opacity:0,
+                  y:20,
+                }}
+
+                whileInView={{
+                  opacity:1,
+                  y:0,
+                }}
+
+                viewport={{
+                  once:true,
+                }}
+
+                transition={{
+                  delay:index*0.12,
+                }}
+
+
+
+                whileHover={{
+                  x:6,
+                }}
+
+
+                className="
+                flex
+
+                items-start
+                gap-4
+
+                rounded-2xl
+
+                border
+                border-border
+
+                bg-surface
+
+                p-5
+
+                shadow-sm
+                "
+              >
+
+
+
+                <div
+                  className="
+                  flex
+
+                  h-7
+                  w-7
+
+                  shrink-0
+
+                  items-center
+                  justify-center
+
+                  rounded-full
+
+                  bg-care
+
+                  text-teal
+                  "
+                >
+
+                  <Check size={16}/>
+
+                </div>
+
+
+
+
+                <p
+                  className="
+                  leading-relaxed
+
+                  text-muted
+                  "
+                >
+
+                  {point}
+
+                </p>
+
+
+              </motion.div>
+
+            ))}
+
+          </div>
+
+
+
+        </motion.div>
+
+
 
       </div>
+
     </section>
+
   );
 }

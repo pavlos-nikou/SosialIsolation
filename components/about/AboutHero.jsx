@@ -1,128 +1,424 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { HeartHandshake, ShieldCheck, MessageCircle } from "lucide-react";
+
 export default function AboutHero() {
   return (
-    <section className="min-h-[85vh] flex items-center bg-warm-bg px-6">
+    <section className="relative flex min-h-[90vh] items-center overflow-hidden bg-warm-bg px-6 py-20">
 
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+      {/* background glows */}
+      <motion.div
+        animate={{
+          scale: [1, 1.1, 1],
+          y: [0, -20, 0],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+        }}
+        className="
+          absolute
+          -left-32
+          top-20
+          h-96
+          w-96
+          rounded-full
+          bg-care
+          blur-[130px]
+        "
+      />
 
-        {/* LEFT CONTENT */}
-        <div>
+      <motion.div
+        animate={{
+          scale: [1, 1.15, 1],
+          y: [0, 20, 0],
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+        }}
+        className="
+          absolute
+          bottom-0
+          right-0
+          h-96
+          w-96
+          rounded-full
+          bg-sage/50
+          blur-[130px]
+        "
+      />
 
-          <span className="inline-block mb-5 rounded-full bg-care px-5 py-2 text-sm text-teal">
+
+
+
+      <div className="relative mx-auto grid max-w-6xl items-center gap-16 md:grid-cols-2">
+
+
+        {/* LEFT */}
+        <motion.div
+          initial={{
+            opacity: 0,
+            y: 40,
+          }}
+
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
+
+          transition={{
+            duration: 0.8,
+            ease: "easeOut",
+          }}
+        >
+
+
+          <span
+            className="
+              inline-flex
+              items-center
+              gap-2
+
+              rounded-full
+              bg-care
+
+              px-5
+              py-2
+
+              text-sm
+              font-medium
+              text-teal
+            "
+          >
+
+            <ShieldCheck size={16}/>
+
             Safe first. Data second. Human always.
+
           </span>
 
 
-          <h1 className="
-            text-5xl md:text-6xl
+
+
+          <h1
+            className="
+            mt-8
+
+            text-5xl
+            md:text-7xl
+
             font-semibold
-            text-text
+
             leading-tight
-          ">
-            A safe space where
-            connection can begin again.
+            tracking-tight
+
+            text-text
+            "
+          >
+
+            A safe space where{" "}
+            <span className="text-teal">
+              connection
+            </span>{" "}
+            can begin again.
+
           </h1>
 
 
-          <p className="
-            mt-6
+
+
+          <p
+            className="
+            mt-8
+
+            max-w-xl
+
             text-lg
             leading-relaxed
+
             text-muted
-            max-w-xl
-          ">
+            "
+          >
+
             TalkPoint helps people share how they feel safely,
             privately, and without pressure — creating a bridge
             between people and the support they may need.
+
           </p>
+
+
+
+
 
 
           <div className="mt-10 flex gap-4">
 
-            <button
+
+            <motion.button
+              whileHover={{
+                scale: 1.05,
+              }}
+
+              whileTap={{
+                scale: 0.95,
+              }}
+
               className="
-              bg-teal
-              text-white
-              px-7 py-3
               rounded-full
-              hover:opacity-90
-              transition
+
+              bg-teal
+
+              px-8
+              py-3
+
+              font-medium
+
+              text-white
+
+              shadow-lg
               "
             >
+
               Start safely
-            </button>
+
+            </motion.button>
 
 
-            <button
+
+            <motion.button
+              whileHover={{
+                scale: 1.05,
+              }}
+
+              whileTap={{
+                scale: 0.95,
+              }}
+
               className="
+              rounded-full
+
               border
               border-border
-              px-7 py-3
-              rounded-full
-              text-text
+
               bg-surface
+
+              px-8
+              py-3
+
+              text-text
+
+              shadow-sm
               "
             >
+
               Learn more
-            </button>
+
+            </motion.button>
+
 
           </div>
 
-        </div>
+
+        </motion.div>
 
 
-        {/* RIGHT VISUAL */}
-        <div
+
+
+
+
+        {/* RIGHT */}
+        <motion.div
+
+          initial={{
+            opacity:0,
+            scale:0.9,
+          }}
+
+          animate={{
+            opacity:1,
+            scale:1,
+          }}
+
+          transition={{
+            duration:0.8,
+            delay:0.2,
+          }}
+
           className="
-          bg-surface
+          relative
+
           rounded-[3rem]
-          p-12
-          shadow-sm
+
           border
           border-border
+
+          bg-white/60
+
+          p-8
+
+          shadow-xl
+          shadow-black/5
+
+          backdrop-blur-xl
           "
         >
 
-          <div
+
+
+          <motion.div
+
+            animate={{
+              y:[0,-12,0],
+            }}
+
+            transition={{
+              duration:5,
+              repeat:Infinity,
+            }}
+
             className="
-            bg-warm-surface
             rounded-[2rem]
-            p-10
+
+            bg-warm-surface
+
+            p-12
+
             text-center
             "
           >
 
-            <p className="text-6xl mb-6">
-              ◌
-            </p>
 
 
-            <h3 className="
-              text-2xl
+            <div
+              className="
+              mx-auto
+
+              flex
+
+              h-20
+              w-20
+
+              items-center
+              justify-center
+
+              rounded-full
+
+              bg-teal
+
+              text-white
+              "
+            >
+
+              <HeartHandshake size={36}/>
+
+            </div>
+
+
+
+
+            <h3
+              className="
+              mt-8
+
+              text-3xl
+              font-semibold
+
               text-teal
-              font-medium
-            ">
+              "
+            >
+
               You are not alone.
+
             </h3>
 
 
-            <p className="
-              mt-4
-              text-muted
+
+
+            <p
+              className="
+              mx-auto
+              mt-5
+
+              max-w-sm
+
               leading-relaxed
-            ">
+
+              text-muted
+              "
+            >
+
               Your voice matters.
               You can share safely,
               with dignity, clarity and control.
+
             </p>
 
 
-          </div>
 
-        </div>
+          </motion.div>
+
+
+
+
+
+
+          {/* floating card */}
+          <motion.div
+
+            animate={{
+              y:[0,-10,0],
+            }}
+
+            transition={{
+              duration:4,
+              repeat:Infinity,
+            }}
+
+            className="
+            absolute
+            -bottom-6
+            -left-6
+
+            flex
+            items-center
+            gap-3
+
+            rounded-2xl
+
+            border
+            border-border
+
+            bg-surface
+
+            px-5
+            py-4
+
+            shadow-lg
+            "
+          >
+
+            <MessageCircle
+              size={18}
+              className="text-teal"
+            />
+
+            <span className="text-sm text-muted">
+              Someone is listening
+            </span>
+
+
+          </motion.div>
+
+
+
+        </motion.div>
 
 
       </div>
 
+
     </section>
-  )
+  );
 }
